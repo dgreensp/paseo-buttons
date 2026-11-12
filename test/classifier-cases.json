@@ -1,0 +1,179 @@
+[
+  {
+    "message": "That's the whole change.\n\nWant me to commit and push this file, or hold off?",
+    "expect": [
+      [
+        "commit",
+        "push"
+      ]
+    ]
+  },
+  {
+    "message": "Want me to check whether docs/setup.md links to this section, or move on to something else?",
+    "expect": [
+      [
+        "check"
+      ]
+    ]
+  },
+  {
+    "message": "I found two outdated sentences in the install guide. Want me to rewrite them now, or would you rather look at them first?",
+    "expect": [
+      [
+        "rewrite"
+      ]
+    ],
+    "or": [
+      [
+        [
+          "rewrite"
+        ],
+        [
+          "show"
+        ]
+      ]
+    ]
+  },
+  {
+    "message": "Nothing's committed yet. Want me to show you the diff, or move on to something else in src/?",
+    "expect": [
+      [
+        "diff"
+      ]
+    ]
+  },
+  {
+    "message": "Should I show you the diff, or commit it now?",
+    "expect": [
+      [
+        "diff"
+      ],
+      [
+        "commit"
+      ]
+    ]
+  },
+  {
+    "message": "I could rewrite that section of the install guide if you like.",
+    "expect": [
+      [
+        "rewrite"
+      ]
+    ]
+  },
+  {
+    "message": "The plugin is ready. Just say the word if you want me to go ahead with building it.",
+    "expect": [
+      [
+        "build"
+      ]
+    ]
+  },
+  {
+    "message": "Which of these matters more to you?",
+    "expect": []
+  },
+  {
+    "message": "Does that match what you remember?",
+    "expect": []
+  },
+  {
+    "message": "Done. Anything else?",
+    "expect": []
+  },
+  {
+    "message": "Let me know what you think of the new wording.",
+    "expect": []
+  },
+  {
+    "message": "Both are the same shape of problem: a rule that says what to do but not where.",
+    "expect": []
+  },
+  {
+    "message": "I have not edited anything. Say the word and I'll fix the three comments in build.sh, and the one in the Makefile if you want that too.",
+    "expect": [
+      [
+        "fix"
+      ]
+    ],
+    "or": [
+      [
+        [
+          "fix"
+        ],
+        [
+          "fix"
+        ]
+      ]
+    ]
+  },
+  {
+    "message": "There's a new agent, **\"label test\"**. Its reply ended with a real offer:\n\n> I have not edited anything. Say the word and I'll fix the three comments in build.sh, and the one in the Makefile if you want that too.\n\nThe plugin logged the button **\"Fix the four comments\"**, so you should see it under that message.\n\nHeads-up: this is a real task, not pretend. Tapping the button makes the agent actually edit `scripts/build.sh` and the `Makefile`, both of which have my uncommitted changes. The edits would stay in the working tree for review like everything else, but if you only want to test the tap, ask it something else instead.\n\nOn the label: the message really offered two things, the three build.sh comments with the Makefile one as an optional extra. The classifier merged them into one button. Two buttons, \"Fix the build.sh comments\" and \"Fix all four comments\", would have matched the offer better. If you agree, I'll add this as a test case.",
+    "expect": [
+      [
+        "test case"
+      ]
+    ]
+  },
+  {
+    "message": "The wanted result is one button, something like \"Add this as a test case\".",
+    "expect": []
+  },
+  {
+    "message": "The fix is in the working tree. Want me to commit it?\n\nEither way, nice progress today.",
+    "expect": [
+      [
+        "commit"
+      ]
+    ]
+  },
+  {
+    "message": "I see two ways forward. Want me to take one of these?\n\n1. Rewrite the Limits section of the README\n2. Add a changelog entry describing the batch import",
+    "expect": [
+      [
+        "rewrite"
+      ],
+      [
+        "changelog"
+      ]
+    ],
+    "or": [
+      [
+        [
+          "limits"
+        ],
+        [
+          "changelog"
+        ]
+      ]
+    ]
+  },
+  {
+    "message": "The deploy script and the backup hook are built and tested. Nothing is deployed.\n\n**`scripts/deploy.sh`**, run from your machine:\n- **No flag:** checks your checkout and the server's clone, pulls the server to main, deploys. If a server check fails, it stops and changes nothing. The local check requires `scripts/` to match GitHub's main.\n- **`--no-pull`:** skips the server checks, leaves the clone alone, and deploys. The local check still applies.\n- **`--check`:** runs the checks only. I added this so I could test safely, and it's handy before a deploy.\n\n**Testing:**\n- `--check` against the real server passed: clean, on main, 4 commits behind.\n- In a scratch clone set up with a side branch, a stray file, a local commit and an extra worktree, it correctly stopped on all of them.\n- It also caught the 2 jobs still running on the staging queue, which confirms the job check works.\n- The stash check is the only one I didn't exercise, and it's the same one-line pattern as the others.\n- I had to fix one bug along the way: macOS pads `wc` counts with spaces, which produced false stops.\n\n**Backup hook:** `.git/hooks/post-commit` in the config repo now runs `scripts/stage-backup.sh` after every commit there. I ran it once by hand: `BACKUP_ARCHIVE` now shows as **Staged**. The hook lives outside the tracked files, so `docs/deploy.md` says how to recreate it.\n\n**Docs:**\n- `docs/deploy.md` covers the deploy script and its flags, the backup staging, and that `ssh` to the server now works from here. It also drops an outdated warning about cache invalidation.\n- `CONTRIBUTING.md` notes that config commits stage a backup automatically.\n\nA real deploy needs these committed and pushed first, because of the local check. The next step is committing and pushing everything, including the search index work and the `start.sh` change. Then `deploy.sh` would pull the server to main, apply the config, and run `npm ci`. Want me to commit and push, and should I deploy?",
+    "expect": [
+      [
+        "commit",
+        "push"
+      ],
+      [
+        "commit",
+        "push",
+        "deploy"
+      ]
+    ],
+    "or": [
+      [
+        [
+          "commit",
+          "push",
+          "deploy"
+        ],
+        [
+          "commit",
+          "push"
+        ]
+      ]
+    ],
+    "note": "Once labelled [\"Commit and push\", \"Deploy\"]; deploying needs the commit and push first, so the second option includes them. Failed 2 of 3 runs when added."
+  }
+]
