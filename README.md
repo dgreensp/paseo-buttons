@@ -81,7 +81,7 @@ Or clone the repository and install from the directory: `paseo plugin install ./
 
 ## Settings
 
-Under **Settings → Plugins → paseo-buttons → Buttons** in the Paseo app, per host:
+In the Paseo app, under **Settings → Plugins**, choose **Options** from the **⋯** menu on the paseo-buttons row. Settings are per host:
 
 - **Commit button** (off by default): adds a **Commit** button when the message mentions committing in any form ("uncommitted" counts) and the agent's working directory is in a git repository with uncommitted changes, unless the classifier already offered a commit. It is a heuristic, not part of the classifier, and can appear when the agent didn't actually propose to commit.
 

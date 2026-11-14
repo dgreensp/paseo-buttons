@@ -1,7 +1,7 @@
 import { defineSettings } from "@getpaseo/plugin";
 import { z } from "zod";
 
-// Per-host settings, edited under Settings → Plugins → paseo-buttons.
+// Per-host settings, edited under Settings → Plugins, Options in paseo-buttons' ⋯ menu.
 export const buttonSettings = defineSettings({
   id: "buttons",
   scope: "host",

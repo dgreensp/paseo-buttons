@@ -4,9 +4,9 @@ import { MAX_BUTTONS } from "../shared/buttons";
 // Optional add-on, not part of the classifier, on when the commitButton setting is
 // (shared/settings.ts): adds a "Commit" button when the agent's working tree has uncommitted
 // changes and the message mentions them. A message that says changes are uncommitted can word it
-// many ways ("uncommitted", "none of this is committed"), so the test is only that "commit"
-// appears anywhere in it, in any case, and in no label the classifier already gave. The classifier
-// prompt is left alone.
+// many ways ("uncommitted", "I didn't commit the file yet"), so the test is only that "commit"
+// appears anywhere in it, and in no label the classifier already gave. The classifier prompt is
+// left alone.
 
 const LABEL = "Commit";
 const GIT_TIMEOUT_MS = 5_000;

@@ -12,7 +12,7 @@ export default function contribute(client: PluginClientContext) {
   });
   const removeSettings = client.addSettingsScreen({
     id: "buttons",
-    title: "Buttons",
+    title: "Options",
     icon: "SlidersHorizontal",
     Component: ButtonSettings,
   });
