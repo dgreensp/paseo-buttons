@@ -18,7 +18,7 @@ The buttons appear about 3 seconds after the turn ends, the time the classifier 
 
 The classifier reads only the last 1,500 characters of the message, with code blocks and block quotes replaced by placeholders, so that an offer quoted from elsewhere isn't taken for the agent's own.
 
-There's a special case for when a voice-mode `speak` call fails and the turn ends with a very short written message (under 40 characters). In the personal setup of the author (David), when a `speak` call fails because the client has left voice mode, and the agent still has to write something to end its turn, it is instructed to write only "(See above.)", since the text given to the `speak` call is visible in the transcript. In this case, the plugin classifies the text of the failed `speak` call instead.
+There's a special case for voice mode. In the personal setup of the author (David), an agent whose `speak` call ends its turn is instructed to write only a stub after it: "(Spoken.)" when the call worked, or "(See above.)" when it failed because the client has left voice mode, since the text given to the `speak` call is visible in the transcript either way. After a failed call, when the turn ends with a very short written message (under 40 characters), the plugin classifies the text of the `speak` call instead. After a call that worked, the plugin classifies the stub as it is, so in this setup spoken turns get no buttons, which the author prefers. Without such instructions, an agent writes a real message after speaking, and that message is classified as usual.
 
 Each result is logged as `paseo-buttons: <agent id> [labels]` or `no offer`; see `paseo plugin logs paseo-buttons`.
 
