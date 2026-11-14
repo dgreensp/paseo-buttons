@@ -48,8 +48,13 @@ This approach successfully extracted offers, but sometimes the offers were vague
 
 In the course of getting the classifying agent to follow these instructions reliably, we came up with a couple of useful techniques:
 
-- Instead of asking the classifying agent to omit offers that didn't meet certain criteria, which can be hard for it to do, ask it to output a boolean flag, then filter the list afterwards. Here, each option comes with a flag saying whether it is a specific action, one the writer could start on as soon as the reader chose it, naming what it would do and to what, and the code keeps only the flagged ones.
-- Ask the agent to include an explanation string in its output. Besides being useful for debugging, requiring the agent to give an explanation actually has the potential to affect the performance. Here it comes first: one or two sentences on which sentence passes the tests and why the likeliest others fail, then the proposal, copied word for word, then the options.
+- Instead of asking the classifying agent to omit offers that didn't meet certain criteria, which can be hard for it to do, ask it to output a boolean flag, then filter the list afterwards.
+- Ask the agent to include an explanation string in its output. Besides being useful for debugging, requiring the agent to give an explanation actually has the potential to affect the performance.
+
+In our case:
+
+- Each option comes with a flag saying whether it is a specific action, one the writer could start on as soon as the reader chose it, naming what it would do and to what, and the code keeps only the flagged ones.
+- We require the agent to output an "explanation" JSON property first, saying in one or two sentences which sentence passes the tests and why the likeliest others fail; then the "proposal" it identified, copied word for word; then the options.
 
 The answer is structured JSON (`--json-schema`). A plain-text answer saved a round trip, about 0.6 seconds, but labelled less accurately.
 
