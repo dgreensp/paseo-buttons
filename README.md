@@ -2,7 +2,9 @@
 
 A [Paseo](https://github.com/getpaseo/paseo) plugin that puts reply buttons under an agent's final message when the message proposes a next step. "Want me to commit and push this, or open a pull request intead?" gets the buttons **Commit and push** and **Open a pull request**; tapping one sends its label as your next message.
 
+---
 <img width="677" height="189" alt="image" src="https://github.com/user-attachments/assets/f7353369-8c43-4ee2-8e29-5c7c42a327cd" />
+---
 
 Agents aren't told about the buttons and write as they always do.
 
